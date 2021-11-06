@@ -57,6 +57,12 @@ function M:close()
 end
 
 function M:exit()
+  local p = s.current()
+
+  vim.schedule(function()
+    s.delete(p)
+    p:unmount()
+  end)
 end
 
 return M
