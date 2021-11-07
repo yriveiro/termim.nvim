@@ -26,12 +26,6 @@ function M:new(config)
       p:unmount()
     end)
   end)
-
-  p:on(event.BufEnter, function()
-    vim.schedule(function()
-      api.nvim_command('startinsert')
-    end)
-  end)
 end
 
 function M:open()
@@ -57,6 +51,11 @@ function M:close()
 end
 
 function M:exit()
+  if s.is_empty() then
+    log.trace("store is empty, skip exit operation")
+    return
+  end
+
   local p = s.current()
   s.delete(p)
   p:unmount()
