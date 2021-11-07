@@ -64,6 +64,7 @@ function M:toggle(config)
   end
 
   M:open()
+  api.nvim_command('startinsert')
 end
 
 function M:exit()
