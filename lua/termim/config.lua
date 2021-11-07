@@ -1,7 +1,6 @@
 local config = {
   enter = true,
   focusable = true,
-  relative = "editor",
   border = {
     style = "rounded",
     highlight = "FloatBorder",

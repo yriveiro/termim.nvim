@@ -13,7 +13,7 @@ function M:new(config)
 
   p:mount()
 
-  log.trace("popup mounted: ", p.winid)
+  log.trace("mounting popup: ", string.format("%p", p))
 
   s.insert(p)
 
@@ -50,6 +50,22 @@ function M:close()
   p:hide()
 end
 
+function M:toggle(config)
+  local p = s.current()
+
+  if p == nil then
+    M:new(config)
+    return
+  end
+
+  if p.winid then
+    M:close()
+    return
+  end
+
+  M:open()
+end
+
 function M:exit()
   if s.is_empty() then
     log.trace("store is empty, skip exit operation")
@@ -59,6 +75,8 @@ function M:exit()
   local p = s.current()
   s.delete(p)
   p:unmount()
+
+  log.trace("exiting popup", string.format("%p", p))
 end
 
 return M
