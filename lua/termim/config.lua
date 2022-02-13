@@ -14,6 +14,7 @@ local config = {
       right = 0,
     },
   },
+  relative = "editor",
   position = "50%",
   size = {
     width = "80%",
